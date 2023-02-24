@@ -16,7 +16,12 @@ class Post extends Model
         'short_description',
         'description',
         'content',
+        'tags',
         'author_id'
+    ];
+
+    protected $casts = [
+        'tags' => 'array'
     ];
 
     public function author(): BelongsTo

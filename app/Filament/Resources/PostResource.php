@@ -37,6 +37,8 @@ class PostResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('description')
                     ->required(),
+                Forms\Components\TagsInput::make('tags')
+                    ->columnSpan(2),
                 Forms\Components\RichEditor::make('content')
                     ->disableToolbarButtons([
                         'codeBlock'
@@ -55,9 +57,13 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('author.name'),
-                Tables\Columns\TextColumn::make('slug')->label('Link'),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Link'),
+                Tables\Columns\TagsColumn::make('tags')
+                    ->default(['No Tags']),
                 Tables\Columns\TextColumn::make('short_description'),
-                Tables\Columns\TextColumn::make('created_at')->label('Published at'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Published at'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
